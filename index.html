@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Véletlenszerűen forgatott SVG csempék</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            line-height: 0;
+            font-size: 0;
+            background-color: #ff0;
+        }
+
+        svg {
+            display: inline-block;
+            vertical-align: top;
+            transform-origin: center;
+	        stroke: #00f;
+	        stroke-width: 1;
+	        stroke-linecap: round;
+	        margin: -1px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // A lehetséges forgatási szögek (90 fokos lépésekben)
+        const forgatasok = [0, 90];
+
+        // A csempék mérete pixelben
+        const csempeMeret = 12;
+        const csempeMeretM = 10;
+
+        // Kiszámoljuk a képernyő kitöltéséhez szükséges sorok és oszlopok számát
+        const oszlopok = Math.ceil(screen.width / csempeMeretM);
+        const sorok = Math.ceil(screen.height / csempeMeretM);
+        const osszesCsempe = oszlopok * sorok;
+
+        let HTMLTartalom = '';
+
+        for (let i = 0; i < osszesCsempe; i++) {
+            // Kiválasztunk egy véletlenszerű szöget a tömbből
+            const veletlenSzog = forgatasok[Math.floor(Math.random() * forgatasok.length)];
+
+            // Beillesztjük az SVG-t inline stílussal, ami elforgatja az adott példányt
+            // HTMLTartalom += `<svg width="${csempeMeret}" height="${csempeMeret}" viewBox="-5 -5 5 5" style="transform: rotate(${veletlenSzog}deg);"><path d="M -5,-3 3,5 5,5 5,3 -3,-5 -5,-5" fill="#000" /></svg>`;
+            // HTMLTartalom += `<svg width="${csempeMeret}" height="${csempeMeret}" viewBox="-5 -5 5 5" style="transform: rotate(${veletlenSzog}deg);"><path d="M -5,-4 4,5 5,5 5,4 -4,-5 -5,-5" fill="#000" /></svg>`;
+            // HTMLTartalom += `<svg width="${csempeMeret}" height="${csempeMeret}" viewBox="-5 -5 5 5" style="transform: rotate(${veletlenSzog}deg);"><path d="M -5,-5 5 5" /></svg>`;
+            HTMLTartalom += `<svg width="${csempeMeret}" height="${csempeMeret}" viewBox="-6 -6 6 6" style="transform: rotate(${veletlenSzog}deg);"><path d="M -5,-5 5,5" /></svg>`;
+        }
+
+        // Egyszerre rajzoljuk ki az összes elemet a hatékonyság érdekében
+        document.body.innerHTML = HTMLTartalom;
+    </script>
+</body>
+</html>
