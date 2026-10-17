@@ -6,3 +6,4 @@ My solution is a real CPU killer if you resize the window. However, in return, w
 
 https://www.youtube.com/watch?v=m9joBLOZVEo
 
+![example](./img.png)
